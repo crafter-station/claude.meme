@@ -65,7 +65,7 @@ export default async function Image({ params }: { params: { id: string } }) {
             top: 0,
             bottom: 0,
             width: "1px",
-            borderLeft: "1px dashed rgba(122, 122, 122, 0.15)",
+            borderLeft: "1px dashed rgba(122, 122, 122, 0.3)",
           }}
         />
         <div
@@ -75,7 +75,7 @@ export default async function Image({ params }: { params: { id: string } }) {
             top: 0,
             bottom: 0,
             width: "1px",
-            borderLeft: "1px dashed rgba(122, 122, 122, 0.15)",
+            borderLeft: "1px dashed rgba(122, 122, 122, 0.3)",
           }}
         />
         <div
@@ -85,7 +85,7 @@ export default async function Image({ params }: { params: { id: string } }) {
             left: 0,
             right: 0,
             height: "1px",
-            borderTop: "1px dashed rgba(122, 122, 122, 0.15)",
+            borderTop: "1px dashed rgba(122, 122, 122, 0.3)",
           }}
         />
         <div
@@ -95,7 +95,7 @@ export default async function Image({ params }: { params: { id: string } }) {
             left: 0,
             right: 0,
             height: "1px",
-            borderTop: "1px dashed rgba(122, 122, 122, 0.15)",
+            borderTop: "1px dashed rgba(122, 122, 122, 0.3)",
           }}
         />
 

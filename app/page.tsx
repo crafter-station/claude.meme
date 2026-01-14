@@ -60,10 +60,10 @@ export default function Home() {
           className="relative flex flex-col items-center gap-6 sm:gap-8 px-6 sm:px-14 py-8 sm:py-12 bg-background overflow-hidden scale-[0.85] sm:scale-100 origin-top"
         >
           <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-            <div className="absolute left-3 top-0 bottom-0 w-px border-l border-dashed border-muted-foreground/15" />
-            <div className="absolute right-3 top-0 bottom-0 w-px border-l border-dashed border-muted-foreground/15" />
-            <div className="absolute top-3 left-0 right-0 h-px border-t border-dashed border-muted-foreground/15" />
-            <div className="absolute bottom-3 left-0 right-0 h-px border-t border-dashed border-muted-foreground/15" />
+            <div className="absolute left-3 top-0 bottom-0 w-px border-l border-dashed border-muted-foreground/30" />
+            <div className="absolute right-3 top-0 bottom-0 w-px border-l border-dashed border-muted-foreground/30" />
+            <div className="absolute top-3 left-0 right-0 h-px border-t border-dashed border-muted-foreground/30" />
+            <div className="absolute bottom-3 left-0 right-0 h-px border-t border-dashed border-muted-foreground/30" />
           </div>
           <header className="text-center space-y-1">
             <EditableText
