@@ -39,8 +39,50 @@ export async function GET(
           justifyContent: "center",
           backgroundColor: "#ece6df",
           padding: "40px",
+          position: "relative",
         }}
       >
+        <div
+          style={{
+            position: "absolute",
+            left: "20px",
+            top: 0,
+            bottom: 0,
+            width: "1px",
+            borderLeft: "1px dashed rgba(122, 122, 122, 0.15)",
+          }}
+        />
+        <div
+          style={{
+            position: "absolute",
+            right: "20px",
+            top: 0,
+            bottom: 0,
+            width: "1px",
+            borderLeft: "1px dashed rgba(122, 122, 122, 0.15)",
+          }}
+        />
+        <div
+          style={{
+            position: "absolute",
+            top: "20px",
+            left: 0,
+            right: 0,
+            height: "1px",
+            borderTop: "1px dashed rgba(122, 122, 122, 0.15)",
+          }}
+        />
+        <div
+          style={{
+            position: "absolute",
+            bottom: "20px",
+            left: 0,
+            right: 0,
+            height: "1px",
+            borderTop: "1px dashed rgba(122, 122, 122, 0.15)",
+          }}
+        />
+
         <div
           style={{
             display: "flex",
@@ -151,6 +193,16 @@ export async function GET(
               </div>
             ))}
           </div>
+
+          <span
+            style={{
+              fontSize: "11px",
+              color: "rgba(122, 122, 122, 0.4)",
+              marginTop: "8px",
+            }}
+          >
+            crafterstation.com
+          </span>
         </div>
       </div>
     ),
