@@ -11,7 +11,7 @@ const geistSans = Geist({
 export const metadata: Metadata = {
   title: "Claude en Pañales",
   description: "Comparte tu equipo Claude",
-  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000"),
+  metadataBase: new URL("https://claude.crafter.run"),
   openGraph: {
     title: "Claude en Pañales",
     description: "Comparte tu equipo Claude",
