@@ -9,26 +9,26 @@ const geistSans = Geist({
 });
 
 export const metadata: Metadata = {
-  title: "claude.meme",
-  description: "Create your Claude team meme - guía de 0 1 para entender y usar Claude",
+  title: "Claude en Pañales",
+  description: "Comparte tu equipo Claude",
   metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000"),
   openGraph: {
-    title: "claude.meme",
-    description: "Create your Claude team meme",
+    title: "Claude en Pañales",
+    description: "Comparte tu equipo Claude",
     images: [
       {
         url: "/og.png",
         width: 1200,
         height: 630,
-        alt: "claude.meme",
+        alt: "Claude en Pañales",
       },
     ],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "claude.meme",
-    description: "Create your Claude team meme",
+    title: "Claude en Pañales",
+    description: "Comparte tu equipo Claude",
     images: ["/og-twitter.png"],
   },
   icons: {
