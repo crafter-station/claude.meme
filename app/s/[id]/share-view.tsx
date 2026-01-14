@@ -2,6 +2,7 @@
 
 import { Share } from "@/lib/db/schema";
 import { Button } from "@/components/ui/button";
+import { GithubBadge } from "@/components/github-badge";
 import { CrafterStationLogo } from "@/components/logos/crafter-station";
 import { MoralejaDesignLogo } from "@/components/logos/moraleja-design";
 import { KeboLogo } from "@/components/logos/kebo";
@@ -17,7 +18,9 @@ export function ShareView({ share }: { share: Share }) {
   const cards = share.cards as CardData[];
 
   return (
-    <main className="min-h-screen flex flex-col items-center justify-center p-4 sm:p-8 gap-6 sm:gap-8">
+    <>
+      <GithubBadge />
+      <main className="min-h-screen flex flex-col items-center justify-center p-4 sm:p-8 gap-6 sm:gap-8">
       <div className="relative flex flex-col items-center gap-6 sm:gap-8 px-6 sm:px-14 py-8 sm:py-12 bg-background overflow-hidden scale-[0.85] sm:scale-100 origin-top">
         <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
           <div className="absolute left-3 top-0 bottom-0 w-px border-l border-dashed border-muted-foreground/30" />
@@ -78,5 +81,6 @@ export function ShareView({ share }: { share: Share }) {
         <Button variant="outline">Crear el tuyo</Button>
       </Link>
     </main>
+    </>
   );
 }
