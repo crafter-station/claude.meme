@@ -54,10 +54,10 @@ export default function Home() {
   return (
     <>
       <GithubBadge />
-      <main className="min-h-screen flex flex-col items-center justify-center p-8 gap-8 relative">
+      <main className="min-h-screen flex flex-col items-center justify-center p-4 sm:p-8 gap-6 sm:gap-8 relative">
         <div
           ref={captureRef}
-          className="relative flex flex-col items-center gap-8 px-14 py-12 bg-background overflow-hidden"
+          className="relative flex flex-col items-center gap-6 sm:gap-8 px-6 sm:px-14 py-8 sm:py-12 bg-background overflow-hidden scale-[0.85] sm:scale-100 origin-top"
         >
           <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
             <div className="absolute left-3 top-0 bottom-0 w-px border-l border-dashed border-muted-foreground/15" />
@@ -65,34 +65,34 @@ export default function Home() {
             <div className="absolute top-3 left-0 right-0 h-px border-t border-dashed border-muted-foreground/15" />
             <div className="absolute bottom-3 left-0 right-0 h-px border-t border-dashed border-muted-foreground/15" />
           </div>
-          <header className="text-center space-y-1.5">
+          <header className="text-center space-y-1">
             <EditableText
               value={title}
               onChange={setTitle}
               as="h1"
-              className="text-[22px] font-semibold tracking-tight text-foreground justify-center"
-              inputClassName="text-[22px] font-semibold tracking-tight text-foreground text-center"
+              className="text-lg sm:text-[22px] font-semibold tracking-tight text-foreground justify-center"
+              inputClassName="text-lg sm:text-[22px] font-semibold tracking-tight text-foreground text-center"
             />
             <EditableText
               value={subtitle}
               onChange={setSubtitle}
               as="p"
-              className="text-muted-foreground text-[13px] justify-center"
-              inputClassName="text-muted-foreground text-[13px] text-center"
+              className="text-muted-foreground text-xs sm:text-[13px] justify-center"
+              inputClassName="text-muted-foreground text-xs sm:text-[13px] text-center"
             />
           </header>
 
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-3 gap-2 sm:gap-4">
             {cards.map((card, index) => (
               <RoleCard key={card.id} card={card} isUploadable={index === 0} />
             ))}
           </div>
 
-          <div className="flex items-center gap-3 mt-2">
-            <CrafterStationLogo className="w-4 h-4 text-muted-foreground/30" />
-            <MoralejaDesignLogo className="w-4 h-4 text-muted-foreground/30" />
-            <KeboLogo className="w-4 h-4 text-muted-foreground/30" />
-            <span className="text-[10px] text-muted-foreground/40 ml-1">crafterstation.com</span>
+          <div className="flex items-center gap-2 sm:gap-3 mt-1 sm:mt-2">
+            <CrafterStationLogo className="w-3 h-3 sm:w-4 sm:h-4 text-muted-foreground/30" />
+            <MoralejaDesignLogo className="w-3 h-3 sm:w-4 sm:h-4 text-muted-foreground/30" />
+            <KeboLogo className="w-3 h-3 sm:w-4 sm:h-4 text-muted-foreground/30" />
+            <span className="text-[8px] sm:text-[10px] text-muted-foreground/40 ml-1">crafterstation.com</span>
           </div>
         </div>
 
@@ -116,23 +116,25 @@ export default function Home() {
         </div>
 
         {shareUrl && (
-          <div className="flex items-center gap-2 px-4 py-2 bg-green-50 border border-green-200 rounded-lg text-sm text-green-800">
-            <CheckIcon />
-            <span>Link copied!</span>
+          <div className="flex flex-col sm:flex-row items-center gap-2 px-4 py-3 bg-green-50 border border-green-200 rounded-lg text-sm text-green-800 max-w-[90vw]">
+            <div className="flex items-center gap-2">
+              <CheckIcon />
+              <span>Link copied!</span>
+            </div>
             <a
               href={shareUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="underline hover:text-green-900"
+              className="underline hover:text-green-900 text-xs sm:text-sm truncate max-w-full"
             >
               {shareUrl}
             </a>
           </div>
         )}
 
-        <footer className="mt-8 flex flex-col items-center gap-4">
-          <p className="text-xs text-muted-foreground/60">Made with care by</p>
-          <div className="flex items-center gap-6">
+        <footer className="mt-4 sm:mt-8 flex flex-col items-center gap-3 sm:gap-4">
+          <p className="text-[10px] sm:text-xs text-muted-foreground/60">Made with care by</p>
+          <div className="flex items-center gap-4 sm:gap-6">
             <a
               href="https://crafterstation.com"
               target="_blank"
@@ -202,7 +204,7 @@ function RoleCard({
   );
 
   return (
-    <div className="relative w-44 h-52 flex flex-col rounded-lg bg-[#f4f0eb] shadow-[0_1px_2px_rgba(0,0,0,0.04),0_2px_8px_rgba(0,0,0,0.02)]">
+    <div className="relative w-28 h-36 sm:w-44 sm:h-52 flex flex-col rounded-lg bg-[#f4f0eb] shadow-[0_1px_2px_rgba(0,0,0,0.04),0_2px_8px_rgba(0,0,0,0.02)]">
       {isUploadable && (
         <input
           ref={fileInputRef}
@@ -244,21 +246,21 @@ function RoleCard({
           ) : (
             <div className="flex flex-col items-center justify-center w-full h-full">
               <div
-                className={`flex flex-col items-center gap-2 p-4 rounded-lg border-2 border-dashed transition-all duration-200 ${
+                className={`flex flex-col items-center gap-1 sm:gap-2 p-2 sm:p-4 rounded-lg border-2 border-dashed transition-all duration-200 ${
                   isHovering
                     ? "border-claude bg-claude/5"
                     : "border-[#d4cec6] bg-transparent"
                 }`}
               >
                 <div
-                  className={`p-2 rounded-full transition-colors ${isHovering ? "bg-claude/10" : "bg-[#e8e2db]"}`}
+                  className={`p-1.5 sm:p-2 rounded-full transition-colors ${isHovering ? "bg-claude/10" : "bg-[#e8e2db]"}`}
                 >
                   <UploadIcon
-                    className={`w-5 h-5 transition-colors ${isHovering ? "text-claude" : "text-[#9a9590]"}`}
+                    className={`w-4 h-4 sm:w-5 sm:h-5 transition-colors ${isHovering ? "text-claude" : "text-[#9a9590]"}`}
                   />
                 </div>
                 <span
-                  className={`text-[11px] font-medium transition-colors ${isHovering ? "text-claude" : "text-[#9a9590]"}`}
+                  className={`text-[9px] sm:text-[11px] font-medium transition-colors ${isHovering ? "text-claude" : "text-[#9a9590]"}`}
                 >
                   Tu foto aquí
                 </span>
@@ -266,16 +268,16 @@ function RoleCard({
             </div>
           )
         ) : (
-          <ClaudeLogo className="w-24 h-auto" />
+          <ClaudeLogo className="w-16 sm:w-24 h-auto" />
         )}
       </div>
 
-      <div className="pb-4 flex justify-center">
+      <div className="pb-2 sm:pb-4 flex justify-center">
         <EditableText
           value={card.label}
           onChange={(value) => updateLabel(card.id, value)}
-          className="text-[13px] text-[#888] tracking-wide"
-          inputClassName="text-[13px] text-[#888] tracking-wide text-center"
+          className="text-[10px] sm:text-[13px] text-[#888] tracking-wide"
+          inputClassName="text-[10px] sm:text-[13px] text-[#888] tracking-wide text-center"
         />
       </div>
     </div>
