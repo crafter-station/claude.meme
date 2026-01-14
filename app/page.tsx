@@ -54,17 +54,17 @@ export default function Home() {
   return (
     <>
       <GithubBadge />
-      <div className="fixed inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
-        <div className="absolute left-[15%] top-0 bottom-0 w-px border-l border-dashed border-muted-foreground/10" />
-        <div className="absolute right-[15%] top-0 bottom-0 w-px border-l border-dashed border-muted-foreground/10" />
-        <div className="absolute top-[20%] left-0 right-0 h-px border-t border-dashed border-muted-foreground/10" />
-        <div className="absolute bottom-[20%] left-0 right-0 h-px border-t border-dashed border-muted-foreground/10" />
-      </div>
       <main className="min-h-screen flex flex-col items-center justify-center p-8 gap-8 relative">
         <div
           ref={captureRef}
-          className="flex flex-col items-center gap-8 px-14 py-12 bg-background"
+          className="relative flex flex-col items-center gap-8 px-14 py-12 bg-background overflow-hidden"
         >
+          <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+            <div className="absolute left-3 top-0 bottom-0 w-px border-l border-dashed border-muted-foreground/15" />
+            <div className="absolute right-3 top-0 bottom-0 w-px border-l border-dashed border-muted-foreground/15" />
+            <div className="absolute top-3 left-0 right-0 h-px border-t border-dashed border-muted-foreground/15" />
+            <div className="absolute bottom-3 left-0 right-0 h-px border-t border-dashed border-muted-foreground/15" />
+          </div>
           <header className="text-center space-y-1.5">
             <EditableText
               value={title}
