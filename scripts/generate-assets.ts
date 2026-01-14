@@ -138,21 +138,6 @@ async function generateAppleIcon() {
   console.log("Generated apple-touch-icon.png");
 }
 
-async function generateClaudeLogo() {
-  const size = 200;
-  
-  const svg = `
-<svg width="${size}" height="${size}" xmlns="http://www.w3.org/2000/svg">
-  <g transform="translate(10, 5) scale(1.0)">
-    <path d="${moralejaPath}" fill="${BRAND.claude}"/>
-  </g>
-</svg>
-`;
-
-  await sharp(Buffer.from(svg)).png().toFile(path.join("public", "claude-logo.png"));
-  console.log("Generated claude-logo.png");
-}
-
 async function main() {
   console.log("Generating brand assets for Claude en Panales...\n");
 
@@ -160,7 +145,6 @@ async function main() {
   await generateOG(1200, 600, "og-twitter.png");
   await generateFavicon();
   await generateAppleIcon();
-  await generateClaudeLogo();
 
   console.log("\nDone!");
 }
