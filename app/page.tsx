@@ -87,6 +87,13 @@ export default function Home() {
               <RoleCard key={card.id} card={card} isUploadable={index === 0} />
             ))}
           </div>
+
+          <div className="flex items-center gap-3 mt-2">
+            <CrafterStationLogo className="w-4 h-4 text-muted-foreground/30" />
+            <MoralejaDesignLogo className="w-4 h-4 text-muted-foreground/30" />
+            <KeboLogo className="w-4 h-4 text-muted-foreground/30" />
+            <span className="text-[10px] text-muted-foreground/40 ml-1">crafterstation.com</span>
+          </div>
         </div>
 
         <div className="flex gap-3 items-center">
