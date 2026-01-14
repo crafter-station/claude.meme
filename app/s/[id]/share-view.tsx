@@ -2,6 +2,9 @@
 
 import { Share } from "@/lib/db/schema";
 import { Button } from "@/components/ui/button";
+import { CrafterStationLogo } from "@/components/logos/crafter-station";
+import { MoralejaDesignLogo } from "@/components/logos/moraleja-design";
+import { KeboLogo } from "@/components/logos/kebo";
 import Link from "next/link";
 
 interface CardData {
@@ -15,7 +18,14 @@ export function ShareView({ share }: { share: Share }) {
 
   return (
     <main className="min-h-screen flex flex-col items-center justify-center p-4 sm:p-8 gap-6 sm:gap-8">
-      <div className="flex flex-col items-center gap-6 sm:gap-8 px-6 sm:px-14 py-8 sm:py-12 bg-background scale-[0.85] sm:scale-100 origin-top">
+      <div className="relative flex flex-col items-center gap-6 sm:gap-8 px-6 sm:px-14 py-8 sm:py-12 bg-background overflow-hidden scale-[0.85] sm:scale-100 origin-top">
+        <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+          <div className="absolute left-3 top-0 bottom-0 w-px border-l border-dashed border-muted-foreground/30" />
+          <div className="absolute right-3 top-0 bottom-0 w-px border-l border-dashed border-muted-foreground/30" />
+          <div className="absolute top-3 left-0 right-0 h-px border-t border-dashed border-muted-foreground/30" />
+          <div className="absolute bottom-3 left-0 right-0 h-px border-t border-dashed border-muted-foreground/30" />
+        </div>
+
         <header className="text-center space-y-1">
           <h1 className="text-lg sm:text-[22px] font-semibold tracking-tight text-foreground">
             {share.title}
@@ -54,6 +64,13 @@ export function ShareView({ share }: { share: Share }) {
               </div>
             </div>
           ))}
+        </div>
+
+        <div className="flex items-center gap-2 sm:gap-3 mt-1 sm:mt-2">
+          <CrafterStationLogo className="w-3 h-3 sm:w-4 sm:h-4 text-muted-foreground/30" />
+          <MoralejaDesignLogo className="w-3 h-3 sm:w-4 sm:h-4 text-muted-foreground/30" />
+          <KeboLogo className="w-3 h-3 sm:w-4 sm:h-4 text-muted-foreground/30" />
+          <span className="text-[8px] sm:text-[10px] text-muted-foreground/40 ml-1">crafterstation.com</span>
         </div>
       </div>
 

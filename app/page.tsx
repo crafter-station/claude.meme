@@ -10,12 +10,13 @@ import { CrafterStationLogo } from "@/components/logos/crafter-station";
 import { MoralejaDesignLogo } from "@/components/logos/moraleja-design";
 import { KeboLogo } from "@/components/logos/kebo";
 import { useCardsStore, CardData } from "@/lib/store";
+import { useOptimisticShare } from "@/lib/hooks/use-share";
 
 export default function Home() {
   const captureRef = useRef<HTMLDivElement>(null);
   const { title, subtitle, cards, setTitle, setSubtitle } = useCardsStore();
-  const [isSharing, setIsSharing] = useState(false);
   const [shareUrl, setShareUrl] = useState<string | null>(null);
+  const { shareOptimistic, isPending } = useOptimisticShare();
 
   const handleDownload = async () => {
     if (!captureRef.current) return;
@@ -33,22 +34,8 @@ export default function Home() {
   };
 
   const handleShare = async () => {
-    setIsSharing(true);
-    try {
-      const res = await fetch("/api/share", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ title, subtitle, cards }),
-      });
-      const { id } = await res.json();
-      const url = `${window.location.origin}/s/${id}`;
-      setShareUrl(url);
-      await navigator.clipboard.writeText(url);
-    } catch (error) {
-      console.error("Failed to share:", error);
-    } finally {
-      setIsSharing(false);
-    }
+    const { url } = await shareOptimistic({ title, subtitle, cards });
+    setShareUrl(url);
   };
 
   return (
@@ -107,11 +94,11 @@ export default function Home() {
           </Button>
           <Button
             onClick={handleShare}
-            disabled={isSharing}
+            disabled={isPending}
             className="cursor-pointer bg-claude hover:bg-claude/90 text-white"
           >
             <ShareIcon />
-            {isSharing ? "Sharing..." : "Share"}
+            Share
           </Button>
         </div>
 

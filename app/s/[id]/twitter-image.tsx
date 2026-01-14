@@ -14,9 +14,10 @@ interface CardData {
   image: string | null;
 }
 
-export default async function Image({ params }: { params: { id: string } }) {
+export default async function Image({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
   const share = await db.query.shares.findFirst({
-    where: eq(shares.id, params.id),
+    where: eq(shares.id, id),
   });
 
   if (!share) {

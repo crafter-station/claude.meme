@@ -5,9 +5,9 @@ import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
   const body = await req.json();
-  const { title, subtitle, cards } = body;
+  const { title, subtitle, cards, id: clientId } = body;
 
-  const id = nanoid(10);
+  const id = clientId || nanoid(10);
 
   const [share] = await db
     .insert(shares)
