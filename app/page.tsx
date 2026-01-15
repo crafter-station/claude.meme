@@ -35,7 +35,7 @@ export default function Home() {
 
   const handleShare = async () => {
     const { url } = await shareOptimistic({ title, subtitle, cards });
-    setShareUrl(url);
+      setShareUrl(url);
   };
 
   return (
@@ -105,8 +105,8 @@ export default function Home() {
         {shareUrl && (
           <div className="flex flex-col sm:flex-row items-center gap-2 px-4 py-3 bg-green-50 border border-green-200 rounded-lg text-sm text-green-800 max-w-[90vw]">
             <div className="flex items-center gap-2">
-              <CheckIcon />
-              <span>Link copied!</span>
+            <CheckIcon />
+            <span>Link copied!</span>
             </div>
             <a
               href={shareUrl}
@@ -168,11 +168,9 @@ function RoleCard({
   const updateImage = useCardsStore((state) => state.updateImage);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const handleImageUpload = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      const file = e.target.files?.[0];
-      if (!file) return;
-
+  const processImageFile = useCallback(
+    (file: File) => {
+      if (!file.type.startsWith("image/")) return;
       const reader = new FileReader();
       reader.onload = (event) => {
         updateImage(card.id, event.target?.result as string);
@@ -180,6 +178,34 @@ function RoleCard({
       reader.readAsDataURL(file);
     },
     [card.id, updateImage]
+  );
+
+  const handleImageUpload = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const file = e.target.files?.[0];
+      if (file) processImageFile(file);
+    },
+    [processImageFile]
+  );
+
+  const handlePaste = useCallback(
+    (e: React.ClipboardEvent) => {
+      if (!isUploadable) return;
+      const items = e.clipboardData?.items;
+      if (!items) return;
+
+      for (const item of items) {
+        if (item.type.startsWith("image/")) {
+          const file = item.getAsFile();
+          if (file) {
+            e.preventDefault();
+            processImageFile(file);
+            break;
+          }
+        }
+      }
+    },
+    [isUploadable, processImageFile]
   );
 
   const handleRemoveImage = useCallback(
@@ -191,7 +217,11 @@ function RoleCard({
   );
 
   return (
-    <div className="relative w-28 h-36 sm:w-44 sm:h-52 flex flex-col rounded-lg bg-[#f4f0eb] shadow-[0_1px_2px_rgba(0,0,0,0.04),0_2px_8px_rgba(0,0,0,0.02)]">
+    <div
+      className="relative w-28 h-36 sm:w-44 sm:h-52 flex flex-col rounded-lg bg-[#f4f0eb] shadow-[0_1px_2px_rgba(0,0,0,0.04),0_2px_8px_rgba(0,0,0,0.02)] focus:outline-none focus:ring-2 focus:ring-claude/50"
+      tabIndex={isUploadable ? 0 : undefined}
+      onPaste={handlePaste}
+    >
       {isUploadable && (
         <input
           ref={fileInputRef}
@@ -203,7 +233,7 @@ function RoleCard({
       )}
 
       <div
-        className={`flex-1 flex items-center justify-center relative ${isUploadable ? "cursor-pointer group" : ""}`}
+        className={`flex-1 flex items-center justify-center relative overflow-hidden mt-2 sm:mt-3 ${isUploadable ? "cursor-pointer group" : ""}`}
         onMouseEnter={() => isUploadable && setIsHovering(true)}
         onMouseLeave={() => isUploadable && setIsHovering(false)}
         onClick={() => isUploadable && fileInputRef.current?.click()}
@@ -214,7 +244,7 @@ function RoleCard({
               <img
                 src={card.image}
                 alt={card.label}
-                className="w-full h-full object-contain p-4"
+                className="max-w-full max-h-full object-cover scale-125"
               />
               {isHovering && (
                 <div className="absolute inset-0 bg-black/40 flex items-center justify-center gap-2 rounded-t-lg transition-opacity duration-200">
