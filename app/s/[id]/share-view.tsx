@@ -44,12 +44,12 @@ export function ShareView({ share }: { share: Share }) {
               key={card.id}
               className="relative w-28 h-36 sm:w-44 sm:h-52 flex flex-col rounded-lg bg-[#f4f0eb] shadow-[0_1px_2px_rgba(0,0,0,0.04),0_2px_8px_rgba(0,0,0,0.02)]"
             >
-              <div className="flex-1 flex items-center justify-center">
+              <div className="flex-1 flex items-center justify-center relative overflow-hidden mt-2 sm:mt-3">
                 {card.image ? (
                   <img
                     src={card.image}
                     alt={card.label}
-                    className="w-full h-full object-contain p-2 sm:p-4"
+                    className="max-w-full max-h-full object-cover scale-125"
                   />
                 ) : (
                   <img
